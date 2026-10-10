@@ -9,8 +9,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
+import br.edu.ifsp.scl.prdm.sc3029531.persistentcontactlist.navigation.MainNavHost
+import br.edu.ifsp.scl.prdm.sc3029531.persistentcontactlist.navigation.Screen
+import br.edu.ifsp.scl.prdm.sc3029531.persistentcontactlist.ui.composable.component.MainTopAppBar
 import br.edu.ifsp.scl.prdm.sc3029531.persistentcontactlist.ui.theme.PersistentContactListTheme
 
 class MainActivity : ComponentActivity() {
@@ -18,30 +25,35 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+
+            //controlador (p/ navegar)
+            val navHostController = rememberNavController()
+
+            val contactViewModel: ContactViewModel = viewModel()
+
+            //pra saber quem tá atualmente no topo
+            val navStackBackEntry by navHostController.currentBackStackEntryAsState()
+
+            val showActions = navStackBackEntry?.destination?.route == Screen.List.route
+
+
             PersistentContactListTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
+
+                Scaffold(
+                    topBar =  {
+                        MainTopAppBar(showActions = showActions) {
+                            navHostController.navigate(route = Screen.Contact.route)
+                        }
+                    },
+                    modifier = Modifier.fillMaxSize()
+                ) { innerPadding ->
+                    MainNavHost(
+                        navHostController = navHostController,
+                        contactViewModel = contactViewModel,
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    PersistentContactListTheme {
-        Greeting("Android")
     }
 }
