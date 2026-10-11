@@ -16,7 +16,7 @@ fun MainNavHost(
     navHostController: NavHostController,
 
     contactViewModel: ContactViewModel,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
 
     //não faz nada com o ViewModel, não precisa do ViewModel
@@ -29,7 +29,11 @@ fun MainNavHost(
         composable(
             route = Screen.List.route
         ) {
-            ListRoute(contactViewModel)
+            ListRoute(
+                modifier = Modifier,
+                contactViewModel = contactViewModel,
+                onNavigate = { navHostController.navigate(Screen.Contact.route) }
+            )
         }
 
         composable(

@@ -15,6 +15,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import br.edu.ifsp.scl.prdm.sc3029531.persistentcontactlist.model.Contact
+import br.edu.ifsp.scl.prdm.sc3029531.persistentcontactlist.model.Operation
 import br.edu.ifsp.scl.prdm.sc3029531.persistentcontactlist.navigation.MainNavHost
 import br.edu.ifsp.scl.prdm.sc3029531.persistentcontactlist.navigation.Screen
 import br.edu.ifsp.scl.prdm.sc3029531.persistentcontactlist.ui.composable.component.MainTopAppBar
@@ -42,6 +44,10 @@ class MainActivity : ComponentActivity() {
                 Scaffold(
                     topBar =  {
                         MainTopAppBar(showActions = showActions) {
+                            contactViewModel.updateCurrentContactAndOperation(
+                                contact = Contact(),
+                                operation = Operation.NEW_OR_EDIT
+                            )
                             navHostController.navigate(route = Screen.Contact.route)
                         }
                     },

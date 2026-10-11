@@ -26,7 +26,13 @@ import br.edu.ifsp.scl.prdm.sc3029531.persistentcontactlist.ui.theme.PersistentC
 import kotlin.collections.listOf
 
 @Composable
-fun ListScreen(contactList: List<Contact>, modifier: Modifier = Modifier) {
+fun ListScreen(
+    contactList: List<Contact>,
+    onViewContact: (Contact) -> Unit,
+    onEditContact: (Contact) -> Unit,
+    onRemoveContact: (Contact) -> Unit,
+    modifier: Modifier = Modifier
+) {
 
     LazyColumn(modifier = modifier.fillMaxWidth()) {
 
@@ -43,7 +49,9 @@ fun ListScreen(contactList: List<Contact>, modifier: Modifier = Modifier) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .combinedClickable(
-                            onClick = {},
+                            onClick = {
+                                onViewContact(contact)
+                            },
                             onLongClick = { expanded = true }
                         )
                 ) {
@@ -61,12 +69,18 @@ fun ListScreen(contactList: List<Contact>, modifier: Modifier = Modifier) {
 
                 DropdownMenuItem(
                     text = { Text("Edit") },
-                    onClick = {}
+                    onClick = {
+                        onEditContact(contact)
+                        expanded = false
+                    }
                 )
 
                 DropdownMenuItem(
                     text = { Text("Remove") },
-                    onClick = {}
+                    onClick = {
+                        onRemoveContact(contact)
+                        expanded = false
+                    }
                 )
 
             }
@@ -81,7 +95,12 @@ fun ListScreen(contactList: List<Contact>, modifier: Modifier = Modifier) {
 fun ListScreenPreview() {
     PersistentContactListTheme {
         Surface {
-            ListScreen(contactList = listOf())
+            ListScreen(
+                contactList = listOf(),
+                onViewContact = {},
+                onEditContact = {},
+                onRemoveContact = {}
+            )
         }
     }
 }

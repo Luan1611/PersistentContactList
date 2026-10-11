@@ -11,12 +11,17 @@ import br.edu.ifsp.scl.prdm.sc3029531.persistentcontactlist.ui.composable.screen
 @Composable
 fun ContactRoute(contactViewModel: ContactViewModel, modifier: Modifier = Modifier, onDone: () -> Unit) {
 
+    //vai vir do ContactViewModel
     //contato sem ser atualizado
     val contact by contactViewModel.currentContact.collectAsStateWithLifecycle()
+
+    //vai vir do ContactViewModel
+    val operation by contactViewModel.operation.collectAsStateWithLifecycle()
 
     ContactScreen(
         contact = contact,
         modifier = modifier,
+        operation = operation,
 
         //newOrEditedContact vem do arquivo ContactScreen.kt, passado pra função onSaveAndQuit
         onSaveAndQuit = { newOrEditedContact ->
