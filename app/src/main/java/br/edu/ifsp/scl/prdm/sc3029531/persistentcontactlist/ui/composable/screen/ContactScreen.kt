@@ -14,9 +14,8 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import br.edu.ifsp.scl.prdm.sc3029531.persistentcontactlist.model.Contact
+import br.edu.ifsp.scl.prdm.sc3029531.persistentcontactlist.model.entity.Contact
 import br.edu.ifsp.scl.prdm.sc3029531.persistentcontactlist.model.Operation
-import br.edu.ifsp.scl.prdm.sc3029531.persistentcontactlist.navigation.Screen
 import br.edu.ifsp.scl.prdm.sc3029531.persistentcontactlist.ui.theme.PersistentContactListTheme
 
 @Composable

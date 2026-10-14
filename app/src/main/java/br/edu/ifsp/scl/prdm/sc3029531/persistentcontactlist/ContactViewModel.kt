@@ -1,8 +1,8 @@
 package br.edu.ifsp.scl.prdm.sc3029531.persistentcontactlist
 
 import androidx.lifecycle.ViewModel
-import br.edu.ifsp.scl.prdm.sc3029531.persistentcontactlist.model.Contact
-import br.edu.ifsp.scl.prdm.sc3029531.persistentcontactlist.model.Contact.Companion.INVALID_CONTACT_ID
+import br.edu.ifsp.scl.prdm.sc3029531.persistentcontactlist.model.entity.Contact
+import br.edu.ifsp.scl.prdm.sc3029531.persistentcontactlist.model.entity.Contact.Companion.INVALID_CONTACT_ID
 import br.edu.ifsp.scl.prdm.sc3029531.persistentcontactlist.model.Operation
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

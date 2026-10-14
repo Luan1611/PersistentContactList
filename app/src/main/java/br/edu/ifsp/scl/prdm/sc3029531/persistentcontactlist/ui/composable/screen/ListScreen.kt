@@ -21,7 +21,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
-import br.edu.ifsp.scl.prdm.sc3029531.persistentcontactlist.model.Contact
+import br.edu.ifsp.scl.prdm.sc3029531.persistentcontactlist.model.entity.Contact
 import br.edu.ifsp.scl.prdm.sc3029531.persistentcontactlist.ui.theme.PersistentContactListTheme
 import kotlin.collections.listOf
 
